@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "NovaDash — Custom New Tab",
+  "version": "1.0.0",
+  "description": "A fully customizable new tab dashboard with widgets, profiles, focus mode, and glass design.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "clipboardRead"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://api.open-meteo.com/*",
+    "https://geocoding-api.open-meteo.com/*",
+    "https://www.google.com/*",
+    "https://calendar.google.com/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "novadash@custom.newtab",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": ["none"]
+      }
+    }
+  },
+  "icons": {
+    "48": "icon48.png",
+    "96": "icon96.png"
+  }
+}
