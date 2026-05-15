@@ -420,6 +420,17 @@ loadFromFirefox().then((data) => {
   });
 });
 
+// Auto-save to Firefox whenever state changes
+useStore.subscribe((state) => {
+  syncToFirefox({
+    profiles: state.profiles,
+    activeProfileId: state.activeProfileId,
+    design: state.design,
+    focusMode: state.focusMode,
+    layoutPresets: state.layoutPresets,
+  });
+});
+
 // Zustand persist doesn't support getters on state well for widgets — expose selectors
 export function useWidgets() {
   return useStore((s) => {
