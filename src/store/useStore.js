@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { loadFromFirefox } from '../utils/storage';
 import {
   DEFAULT_DESIGN,
   DEFAULT_FOCUS,
@@ -62,6 +63,18 @@ const WIDGET_DEFAULTS = {
     config: {},
   },
 };
+
+// Load saved data on startup
+loadFromFirefox().then((data) => {
+  if (!data) return;
+
+  const state = useStore.getState();
+
+  useStore.setState({
+    ...state,
+    ...data,
+  });
+});
 
 function getActiveProfile(state) {
   return state.profiles.find((p) => p.id === state.activeProfileId) || state.profiles[0];
